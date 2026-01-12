@@ -1,0 +1,45 @@
+name: luma.examples
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-minor-version: [11, 12, 13]
+    name: Python 3.${{ matrix.python-minor-version }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup pip cache
+        uses: actions/cache@v3
+        id: pipcache
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.${{ matrix.python-minor-version }}
+          check-latest: true
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      - name: Install Python packages
+        run: pip install --upgrade setuptools pip wheel tox
+      - name: Run tests
+        env:
+          TOX_ENV: py3${{ matrix.python-minor-version }}
+        run: |
+          python_env=$(echo $TOX_ENV | sed -e s/-dev$//)
+          python -m tox -e ${python_env}
+      - name: QA
+        env:
+          TOX_ENV: qa
+        run: python -m tox -e $TOX_ENV
