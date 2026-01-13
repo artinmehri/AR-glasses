@@ -11,11 +11,11 @@ def getResponse():
         model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
         messages=[{"role": "user", "content": "Tell me about AR Glasses"}],
 )
-
     return response.choices[0].message.content
 
 
-def analyzeImage(image_bytes):
+
+def analyzeImageAndAudio(image_bytes, audio_bytes):
     client = genai.Client(api_key="AIzaSyARkbSTs8IuSvnXcQHzBCapVeE1DyTi_SM")
     response = client.models.generate_content(
     model='gemini-2.5-flash',
@@ -24,7 +24,11 @@ def analyzeImage(image_bytes):
         data=image_bytes,
         mime_type='image/jpeg',
       ),
-      'Caption this image.'
+      types.Part.from_bytes(
+        data=audio_bytes,
+        mime_type='audio/wav',
+      ),
+      'Caption this image and transcribe this audio, and provide a helpful response and suggesting based on user situation. Be very concise and helpful.'
     ]
   )
     return response.text
