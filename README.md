@@ -26,8 +26,17 @@ A low-cost wearable system that turns the user’s surroundings into an interact
 **⚙️ System Architecture**
 --------------------------
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   Camera (CSI) ─────┐                     ├──→ Raspberry Pi Zero 2 W ──→ WiFi ──→ Gemini / Together AI  Microphone (I2S) ─┘                                 ↓                                                  AI Response                                                       ↓                                               OLED (SSD1306)                                                       ↓                                            Beam Splitter Optics                                                       ↓                                                User’s Eye View   `
-
+Camera (CSI) ─────┐
+                   ├──→ Raspberry Pi Zero 2 W ──→ WiFi ──→ Gemini / Together AI
+Microphone (I2S) ─┘                                 ↓
+                                                AI Response
+                                                     ↓
+                                             OLED (SSD1306)
+                                                     ↓
+                                          Beam Splitter Optics
+                                                     ↓
+                                              User’s Eye View
+                                              
 **✨ Features**
 --------------
 
@@ -92,12 +101,24 @@ Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQL
 
 ### **Python Libraries**
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   from together import Together  from google import genai  from google.genai import types   `
+from together import Together
+from google import genai
+from google.genai import types
 
 **🧩 Repository Structure**
 ---------------------------
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   AR-glasses/  ├── main.py                # Core orchestration loop  ├── camera_module.py       # Image capture via CSI camera  ├── mic_module.py          # I2S audio recording pipeline  ├── display_module.py      # OLED rendering + formatting  ├── ai_client.py          # Gemini + Together AI integration  ├── requirements.txt      # Python dependencies  ├── test.jpg              # Sample captured frame  ├── tests_cam/            # Camera test utilities  ├── oled/                 # OLED libraries/examples  └── __pycache__/          # Python cache files   `
+AR-glasses/
+├── main.py                # Core orchestration loop
+├── camera_module.py       # Image capture via CSI camera
+├── mic_module.py          # I2S audio recording pipeline
+├── display_module.py      # OLED rendering + formatting
+├── ai_client.py          # Gemini + Together AI integration
+├── requirements.txt      # Python dependencies
+├── test.jpg              # Sample captured frame
+├── tests_cam/            # Camera test utilities
+├── oled/                 # OLED libraries/examples
+└── __pycache__/          # Python cache files
 
 **🔄 How It Works**
 -------------------
@@ -124,40 +145,42 @@ Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQL
 
 ### **1\. Clone repository**
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   git clone https://github.com/artinmehri/AR-glasses  cd AR-glasses   `
+git clone https://github.com/artinmehri/AR-glasses
+cd AR-glasses
 
 ### **2\. Create virtual environment**
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   python3 -m venv venv  source venv/bin/activate   `
+python3 -m venv venv
+source venv/bin/activate
 
 ### **3\. Install dependencies**
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pip install -r requirements.txt   `
+pip install -r requirements.txt
 
 If system error occurs:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   pip install --break-system-packages -r requirements.txt   `
+pip install --break-system-packages -r requirements.txt   `
 
 ### **4\. Enable Raspberry Pi interfaces**
 
 Edit:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   sudo nano /boot/firmware/config.txt   `
+sudo nano /boot/firmware/config.txt   `
 
 Ensure:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   dtparam=i2c_arm=on  dtparam=i2s=on  dtoverlay=googlevoicehat-soundcard  camera_auto_detect=1  dtparam=audio=off   `
+dtparam=i2c_arm=on  dtparam=i2s=on  dtoverlay=googlevoicehat-soundcard  camera_auto_detect=1  dtparam=audio=off   `
 
 ### **5\. Run system**
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   python main.py   `
+python main.py   `
 
 **🎤 Microphone System (Key Implementation)**
 ---------------------------------------------
 
 Audio is captured using ALSA via I2S interface:
 
-Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   arecord -D plughw:0,0 -f S32_LE -r 48000 -c 1 -d 30 output.wav   `
+arecord -D plughw:0,0 -f S32_LE -r 48000 -c 1 -d 30 output.wav   `
 
 ### **Key design decisions:**
 
