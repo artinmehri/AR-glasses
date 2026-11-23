@@ -1,10 +1,11 @@
+import os
 from together import Together
 from google import genai
 from google.genai import types
 from camera_module import capture_image
 
-# Ensure you replace "api_key" with your actual Together AI key
-client = Together(api_key="e0c979c33a3c3d0f423a374d085700447406d314e7dbf9f12cb75efd6222f4b1")
+# Credentials are supplied by the local environment.
+client = Together(api_key=os.environ["TOGETHER_API_KEY"])
 
 def getResponse():
     response = client.chat.completions.create(
@@ -13,10 +14,8 @@ def getResponse():
 )
     return response.choices[0].message.content
 
-
-
 def analyzeImageAndAudio(image_bytes, audio_bytes):
-    client = genai.Client(api_key="AIzaSyARkbSTs8IuSvnXcQHzBCapVeE1DyTi_SM")
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
     prompt = prompt = """You are an invisible AI assistant helping someone through AR glasses in real-time.
 
 CONTEXT:
